@@ -2,7 +2,8 @@
 
 The Class Program consists of Three Functions:
 
-OldPhonePad(String Input)
+OldPhonePad(String Input):
+
 	This method takes Input String in the parameter. 
 	
 	There are three main variables that is used. 
@@ -28,6 +29,7 @@ OldPhonePad(String Input)
 
 
 GetAlphabet(char input, int count):
+
 	This method takes inputNumber and its pressed Count
 	Based on the Number Input and PressedCount, It will return respective alphabet
 	
