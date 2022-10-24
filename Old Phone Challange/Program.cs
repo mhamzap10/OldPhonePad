@@ -10,7 +10,7 @@ namespace Old_Phone_Challange
         /// <param name="input"></param>
         /// <param name="count"></param>
         /// <returns></returns>
-        public static string GetCharacter(char input, int count)
+        public static string GetAlphabet(char input, int count)
         {
             switch (input)
             {
@@ -176,16 +176,15 @@ namespace Old_Phone_Challange
                 }
                 else if(currentLetter == '*')
                 {
-                    if (i + 1 <= input.Length) // Just in case * is a last letter, and there is no '#', This condition is just for safe side to avoid exception
+                    if (i + 1 < input.Length) // Just in case * is a last letter, and there is no '#', This condition is just for safe side to avoid exception
                     {
                         previousLetter = input[i + 1];
                         pressedCount = 0;
                     }
                     continue;
                 }
-                else if (pressedCount > 0)
+                else 
                 {
-                   
                     if (previousLetter == '7' || previousLetter == '9') // Letter 7 and 9 has 4 Alphabets
                     {
                         if (pressedCount > 4) // This will check if user has pressed Letter more than 4 time, It will cycle through each letter again
@@ -196,7 +195,7 @@ namespace Old_Phone_Challange
                         pressedCount -= 3; // This will check if user has Letter more than 3 time, It will cycle through each letter again
                     }
                     // This method will get respective Alphabet based on input character and number of time it pressed
-                    output += GetCharacter(previousLetter, pressedCount);
+                    output += GetAlphabet(previousLetter, pressedCount);
                     if (currentLetter == '#')
                         return output;
                     previousLetter = currentLetter;
@@ -210,6 +209,9 @@ namespace Old_Phone_Challange
         static void Main(string[] args)
         {
             Console.WriteLine(OldPhonePad("#"));
+            Console.WriteLine(OldPhonePad(""));
+            Console.WriteLine(OldPhonePad("*"));
+            Console.WriteLine(OldPhonePad("*7*"));
             Console.WriteLine(OldPhonePad("7#"));
             Console.WriteLine(OldPhonePad("7*#"));
             Console.WriteLine(OldPhonePad("*#"));
