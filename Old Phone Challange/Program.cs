@@ -176,10 +176,20 @@ namespace Old_Phone_Challange
                 }
                 else if(currentLetter == '*')
                 {
-                    if (i + 1 < input.Length) // Just in case * is a last letter, and there is no '#', This condition is just for safe side to avoid exception
+                    while (i  < input.Length) // Just in case * is a last letter, and there is no '#', This condition is just for safe side to avoid exception
                     {
-                        previousLetter = input[i + 1];
-                        pressedCount = 0;
+                        // This loop wil work unless all backspace character in sequence are checked.
+                        if (i+1 < input.Length && input[i+1] == '*') // If next character is also a back space.
+                        {
+                            output = output.Remove(output.Length - 1, 1);
+                            i = i + 1;
+                        }
+                        else
+                        {
+                            previousLetter = input[i];
+                            pressedCount = 1;
+                            break;
+                        }
                     }
                     continue;
                 }
@@ -219,6 +229,9 @@ namespace Old_Phone_Challange
             Console.WriteLine(OldPhonePad("227*#"));
             Console.WriteLine(OldPhonePad("4433555 555666#"));
             Console.WriteLine(OldPhonePad("8 88777444666*664#"));
+            Console.WriteLine(OldPhonePad("8 887774446667**664#"));
+
+          
         }
     }
 }
