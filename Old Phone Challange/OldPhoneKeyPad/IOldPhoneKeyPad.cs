@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Old_Phone_Challange
 {
-    interface IOldPhoneKeyPad
+    public interface IOldPhoneKeyPad 
     {
         public string GetOldPhoneKeys(string inputKeys);
     }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Old_Phone_Challange
 {
-    class OldPhoneKeyPad : IOldPhoneKeyPad
+    public class OldPhoneKeyPad : IOldPhoneKeyPad
     {
         /// <summary>
         /// This method will take Input Character and Number of time it pressed, and will return respective output
@@ -45,7 +45,8 @@ namespace Old_Phone_Challange
             char previousLetter = input[0];
             int pressedCount = 0;
             bool backSpaceFlag = false;
-            for (int i = 0; i < input.Length; i++)
+            int lastIndex = input.Length - 1;
+            for (int i = 0; i <= lastIndex; i++)
             {
                 char currentLetter = input[i];
                 if (currentLetter == previousLetter && currentLetter != '*')
@@ -60,7 +61,7 @@ namespace Old_Phone_Challange
                     if (backSpaceFlag)
                     {
                         if (output.Length > 0)
-                            output = output.Remove(output.Length - 1);
+                            output = output.Remove(output.Length-1);
                         backSpaceFlag = false;
                     }
                     if (i + 1 < input.Length)
@@ -90,8 +91,15 @@ namespace Old_Phone_Challange
                     previousLetter = currentLetter;
                     pressedCount = 1;
                 }
+                
 
             }
+           
+
+            if(input[lastIndex] == '#')
+            return output;
+            else
+                output += GetAlphabet(previousLetter, pressedCount);
             return output;
         }
 
