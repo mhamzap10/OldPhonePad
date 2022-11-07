@@ -4,8 +4,6 @@ namespace Old_Phone_Challange
 {
     class Program
     {
-        
-       
 
         static void Main(string[] args)
         {
