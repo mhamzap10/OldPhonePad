@@ -7,8 +7,7 @@ namespace Old_Phone_Challange
 
         static void Main(string[] args)
         {
-            OldPhoneKeyPad phone = new OldPhoneKeyPad();
-            phone.inputDigits = "7*#";
+            OldPhoneKeyPad phone = new OldPhoneKeyPad("8 88777444666*664#");
             Console.WriteLine(phone.GetOldPhoneKeys() );
         }
     }
