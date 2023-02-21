@@ -1,31 +1,27 @@
 ﻿namespace Old_Phone_Challange
 {
-    public class OldPhoneKeyPad : IOldPhoneKeyPad
+    public class OldPhoneKeyPad 
     {
         public string inputDigits { get; set; }
-        string outputResult { get; set; }
-        char _previousLetter { get; set; }
-        int _pressedCount { get; set; }
-        bool _backSpaceFlag { get; set; }
+        private string outputResult ;
+        private char _previousLetter;
+        private int _pressedCount;
 
         public OldPhoneKeyPad()
         {
             this.inputDigits = "";
             this._pressedCount = 0;
-            this._backSpaceFlag = false;
             this.outputResult = "";
         }
 
         public OldPhoneKeyPad(string _inputDigits)
         {
             this.inputDigits = _inputDigits;
-            this._previousLetter = inputDigits[0];
             this._pressedCount = 0;
-            this._backSpaceFlag = false;
             this.outputResult = "";
         }
 
-       
+
 
 
 
@@ -48,21 +44,24 @@
                 {
                     this._pressedCount -= 3; // This will check if user has Letter more than 3 time, It will cycle through each letter again
                 }
-
+                if (this._previousLetter == '*')
+                    this.RemoveAlphabet(this._pressedCount);
+                if (this._previousLetter == '#')
+                    return;
                 index = int.Parse(this._previousLetter.ToString()) - 1;
                 this.outputResult += Alphabet[index, this._pressedCount - 1];
             }
             catch (System.FormatException)
             {
-              
-            }  
+                System.Console.WriteLine("Only Numbers are allowed...");
+            }
         }
 
-        public void RemoveAlphabet()
+        public void RemoveAlphabet(int pressedCount = 1)
         {
-            int count = this.outputResult.Length - this._pressedCount;
-                if (count > 0)
-                    this.outputResult = this.outputResult.Remove(count);
+            int startIndex = this.outputResult.Length - pressedCount;
+            if (startIndex >= 0)
+                this.outputResult = this.outputResult.Remove(startIndex);
         }
 
         /// <summary>
@@ -84,19 +83,16 @@
                     this._pressedCount++;
                     continue;
                 }
-                else if (currentLetter == '*')
-                {
+                    this.AppendOutput();
+                if (currentLetter == '*')
                     this.RemoveAlphabet();
+                if (i + 1 <= lastIndex)
+                {
+                    this._previousLetter = currentLetter == ' ' || currentLetter == '*' ? inputDigits[i + 1] : currentLetter;
+                    this._pressedCount = currentLetter == ' ' || currentLetter == '*' ? 0 : 1;
                 }
                 else
-                {
-                    // This method will Append Alphabet based on input character and number of time it pressed
-                    this.AppendOutput();
-                }
-
-                this._previousLetter = currentLetter;
-                this._pressedCount = 1;
-
+                    return;
             }
         }
 
