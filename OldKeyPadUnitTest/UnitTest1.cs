@@ -24,7 +24,7 @@ namespace OldKeyPadUnitTest
         [TestCase(" #")]
         public void ReturnEmptyString(string inputKey)
         {
-            string output = _oldPhoneKey.GetOldPhoneKeys(inputKey);
+            string output = _oldPhoneKey.GetOldPhoneKeys();
             Assert.AreEqual(output,"");
         }
         [TestCase("8 88777444666* 664#")]
@@ -47,7 +47,7 @@ namespace OldKeyPadUnitTest
         [TestCase("4433555 55 66*****4433555 555 666#")]
         public void MultipleBackSpaceInSequence(string inputKey)
         {
-            string output = _oldPhoneKey.GetOldPhoneKeys(inputKey);
+            string output = _oldPhoneKey.GetOldPhoneKeys();
             Assert.AreEqual(output, "HELLO");
         }
     }

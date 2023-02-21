@@ -8,6 +8,6 @@ namespace Old_Phone_Challange
 {
     public interface IOldPhoneKeyPad 
     {
-        public string GetOldPhoneKeys(string inputKeys);
+        public string GetOldPhoneKeys();
     }
 }
